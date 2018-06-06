@@ -54,6 +54,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_stage" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for issue_id -->
+      <input type="hidden" name="issue_id" value="<%= @issue.id %>">
+
+      <!-- Label and input for stage_number -->
+      <div class="form-group">
+        <label for="stage_number" class="control-label">
+          Stage number
+        </label>
+
+        <input type="text" id="stage_number" name="stage_number" placeholder="Stage number" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Stage
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -85,6 +108,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_enrollment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for issue_id -->
+      <input type="hidden" name="issue_id" value="<%= @issue.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Enrollment
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

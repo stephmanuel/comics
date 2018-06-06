@@ -6,6 +6,7 @@ class StagesController < ApplicationController
   end
 
   def show
+    @medium = Medium.new
     @stage = Stage.find(params[:id])
 
     render("stages/show.html.erb")
