@@ -14,10 +14,10 @@
         <% end %>
       </dd>
 
-      <dt>Issue</dt>
+      <dt>Comic</dt>
       <dd>
         <% if @enrollment.issue.present? %>
-          <a href="/issues/<%= @enrollment.issue_id %>">
+          <a href="/comics/<%= @enrollment.comic_id %>">
             <%= @enrollment.issue.created_at %>
           </a>
         <% end %>

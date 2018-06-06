@@ -1,0 +1,200 @@
+<div class="page-header">
+  <h3>Comic #<%= @comic.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @comic.user_id %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @comic.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/comics" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/comics/<%= @comic.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_comic/<%= @comic.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Comic has many rosters -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Rosters
+      </li>
+
+      <% @comic.rosters.each do |enrollment| %>
+        <li class="list-group-item">
+          <a href="/enrollments/<%= enrollment.id %>">
+            <%= enrollment.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/enrollments/<%= enrollment.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/enrollments/<%= enrollment.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_enrollment/<%= enrollment.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_enrollment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for comic_id -->
+      <input type="hidden" name="comic_id" value="<%= @comic.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Enrollment
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Comic has many media -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Media
+      </li>
+
+      <% @comic.media.each do |medium| %>
+        <li class="list-group-item">
+          <a href="/media/<%= medium.id %>">
+            <%= medium.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/media/<%= medium.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/media/<%= medium.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_medium/<%= medium.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_medium" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for url -->
+      <div class="form-group">
+        <label for="url" class="control-label">
+          Url
+        </label>
+
+        <input type="text" id="url" name="url" placeholder="Url" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for chapter_id -->
+      <div class="form-group">
+        <label for="chapter_id" class="control-label">
+          Chapter
+        </label>
+
+        <%= select_tag(:chapter_id, options_from_collection_for_select(Comic.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for social_issue -->
+      <div class="form-group">
+        <label for="social_issue" class="control-label">
+          Social issue
+        </label>
+
+        <input type="text" id="social_issue" name="social_issue" placeholder="Social issue" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Medium
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Comic has many users -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Users
+      </li>
+
+      <% @comic.users.each do |user| %>
+        <li class="list-group-item">
+          <a href="/users/<%= user.id %>">
+            <%= user.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/users/<%= user.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-class CreateIssues < ActiveRecord::Migration
+class CreateComics < ActiveRecord::Migration
   def change
-    create_table :issues do |t|
+    create_table :comics do |t|
       t.integer :user_id
       t.string :name
 

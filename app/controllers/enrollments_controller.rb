@@ -22,7 +22,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new
 
     @enrollment.user_id = params[:user_id]
-    @enrollment.issue_id = params[:issue_id]
+    @enrollment.comic_id = params[:comic_id]
 
     save_status = @enrollment.save
 
@@ -50,7 +50,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.find(params[:id])
 
     @enrollment.user_id = params[:user_id]
-    @enrollment.issue_id = params[:issue_id]
+    @enrollment.comic_id = params[:comic_id]
 
     save_status = @enrollment.save
 

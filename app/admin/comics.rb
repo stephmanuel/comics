@@ -1,4 +1,4 @@
-ActiveAdmin.register Issue do
+ActiveAdmin.register Comic do
 
  permit_params :user_id, :name
 # See permitted parameters documentation:
