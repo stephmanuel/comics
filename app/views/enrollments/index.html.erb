@@ -16,8 +16,20 @@
 
       <% @enrollments.each do |enrollment| %>
       <tr>
-        <td><%= enrollment.user.created_at %></td>
-        <td><%= enrollment.issue.created_at %></td>
+        <td>
+          <% if enrollment.user.present? %>
+            <a href="/users/<%= enrollment.user.id %>">
+              <%= enrollment.user.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if enrollment.issue.present? %>
+            <a href="/issues/<%= enrollment.issue.id %>">
+              <%= enrollment.issue.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/enrollments/<%= enrollment.id %>" class="btn btn-primary">Show</a>
           <a href="/enrollments/<%= enrollment.id %>/edit" class="btn btn-warning">Edit</a>

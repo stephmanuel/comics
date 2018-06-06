@@ -16,7 +16,13 @@
 
       <% @stages.each do |stage| %>
       <tr>
-        <td><%= stage.issue.created_at %></td>
+        <td>
+          <% if stage.issue.present? %>
+            <a href="/issues/<%= stage.issue.id %>">
+              <%= stage.issue.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td><%= stage.stage_number %></td>
         <td>
           <a href="/stages/<%= stage.id %>" class="btn btn-primary">Show</a>

@@ -21,7 +21,13 @@
         <td><%= medium.name %></td>
         <td><%= medium.url %></td>
         <td><%= medium.bio %></td>
-        <td><%= medium.stage.issue_id %></td>
+        <td>
+          <% if medium.stage.present? %>
+            <a href="/stages/<%= medium.stage.id %>">
+              <%= medium.stage.issue_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/media/<%= medium.id %>" class="btn btn-primary">Show</a>
           <a href="/media/<%= medium.id %>/edit" class="btn btn-warning">Edit</a>

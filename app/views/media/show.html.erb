@@ -15,7 +15,13 @@
       <dd><%= @medium.bio %></dd>
 
       <dt>Stage</dt>
-      <dd><%= @medium.stage_id %></dd>
+      <dd>
+        <% if @medium.stage.present? %>
+          <a href="/stages/<%= @medium.stage_id %>">
+            <%= @medium.stage.issue_id %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
