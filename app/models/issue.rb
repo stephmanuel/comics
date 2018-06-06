@@ -1,6 +1,10 @@
 class Issue < ApplicationRecord
   # Direct associations
 
+  has_many   :rosters,
+             :class_name => "Enrollment",
+             :dependent => :destroy
+
   has_many   :stages,
              :dependent => :destroy
 
