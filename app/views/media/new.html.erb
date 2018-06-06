@@ -51,7 +51,7 @@
           Stage
         </label>
 
-        <input type="text" id="stage_id" name="stage_id" placeholder="Stage" class="form-control" value="<%= @medium.stage_id %>">
+        <%= select_tag(:stage_id, options_from_collection_for_select(Stage.all, :id, :issue_id, @medium.stage_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
