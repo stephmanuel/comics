@@ -17,7 +17,7 @@
       <% @enrollments.each do |enrollment| %>
       <tr>
         <td><%= enrollment.user.created_at %></td>
-        <td><%= enrollment.issue_id %></td>
+        <td><%= enrollment.issue.created_at %></td>
         <td>
           <a href="/enrollments/<%= enrollment.id %>" class="btn btn-primary">Show</a>
           <a href="/enrollments/<%= enrollment.id %>/edit" class="btn btn-warning">Edit</a>
