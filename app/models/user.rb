@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :issues,
+             :through => :rosters,
+             :source => :issue
+
   # Validations
 
 end

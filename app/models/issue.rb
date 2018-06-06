@@ -10,6 +10,10 @@ class Issue < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :users,
+             :through => :rosters,
+             :source => :user
+
   # Validations
 
   validates :name, :presence => true
