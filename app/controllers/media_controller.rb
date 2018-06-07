@@ -1,7 +1,7 @@
 class MediaController < ApplicationController
   def index
     @q = Medium.ransack(params[:q])
-    @media = @q.result(:distinct => true).includes(:stage).page(params[:page]).per(10)
+    @media = @q.result(:distinct => true).includes(:issue).page(params[:page]).per(10)
 
     render("media/index.html.erb")
   end
@@ -23,8 +23,9 @@ class MediaController < ApplicationController
 
     @medium.name = params[:name]
     @medium.url = params[:url]
-    @medium.bio = params[:bio]
-    @medium.stage_id = params[:stage_id]
+    @medium.description = params[:description]
+    @medium.comic_id = params[:comic_id]
+    @medium.social_issue = params[:social_issue]
 
     save_status = @medium.save
 
@@ -53,8 +54,9 @@ class MediaController < ApplicationController
 
     @medium.name = params[:name]
     @medium.url = params[:url]
-    @medium.bio = params[:bio]
-    @medium.stage_id = params[:stage_id]
+    @medium.description = params[:description]
+    @medium.comic_id = params[:comic_id]
+    @medium.social_issue = params[:social_issue]
 
     save_status = @medium.save
 

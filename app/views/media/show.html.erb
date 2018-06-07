@@ -11,17 +11,20 @@
       <dt>Url</dt>
       <dd><%= @medium.url %></dd>
 
-      <dt>Bio</dt>
-      <dd><%= @medium.bio %></dd>
+      <dt>Description</dt>
+      <dd><%= @medium.description %></dd>
 
-      <dt>Stage</dt>
+      <dt>Comic</dt>
       <dd>
-        <% if @medium.stage.present? %>
-          <a href="/stages/<%= @medium.stage_id %>">
-            <%= @medium.stage.issue_id %>
+        <% if @medium.issue.present? %>
+          <a href="/comics/<%= @medium.comic_id %>">
+            <%= @medium.issue.created_at %>
           </a>
         <% end %>
       </dd>
+
+      <dt>Social issue</dt>
+      <dd><%= @medium.social_issue %></dd>
 
     </dl>
 

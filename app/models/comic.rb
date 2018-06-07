@@ -1,13 +1,13 @@
-class Stage < ApplicationRecord
+class Comic < ApplicationRecord
   # Direct associations
 
   has_many   :media,
              :dependent => :destroy
 
-  belongs_to :issue
-
   # Indirect associations
 
   # Validations
+
+  validates :name, :presence => true
 
 end
