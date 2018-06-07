@@ -57,13 +57,13 @@
       <!-- Label and input for user_id -->
       <input type="hidden" name="user_id" value="<%= @user.id %>">
 
-      <!-- Label and input for issue_id -->
+      <!-- Label and input for comic_id -->
       <div class="form-group">
-        <label for="issue_id" class="control-label">
-          Issue
+        <label for="comic_id" class="control-label">
+          Comic
         </label>
 
-        <%= select_tag(:issue_id, options_from_collection_for_select(Issue.all, :id, :created_at), :class => "form-control") %>
+        <%= select_tag(:comic_id, options_from_collection_for_select(Comic.all, :id, :created_at), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-success">
@@ -84,19 +84,19 @@
         Issues
       </li>
 
-      <% @user.issues.each do |issue| %>
+      <% @user.issues.each do |comic| %>
         <li class="list-group-item">
-          <a href="/issues/<%= issue.id %>">
-            <%= issue.created_at %>
+          <a href="/comics/<%= comic.id %>">
+            <%= comic.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/issues/<%= issue.id %>" class="btn btn-primary">
+            <a href="/comics/<%= comic.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/issues/<%= issue.id %>/edit" class="btn btn-warning">
+            <a href="/comics/<%= comic.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_issue/<%= issue.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_comic/<%= comic.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>

@@ -1,11 +1,12 @@
-class Issue < ApplicationRecord
+class Comic < ApplicationRecord
   # Direct associations
+
+  has_many   :media,
+             :foreign_key => "chapter_id",
+             :dependent => :destroy
 
   has_many   :rosters,
              :class_name => "Enrollment",
-             :dependent => :destroy
-
-  has_many   :stages,
              :dependent => :destroy
 
   # Indirect associations

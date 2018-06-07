@@ -1,6 +1,6 @@
 <!-- Validation failure messages -->
-<% if @issue.errors.any? %>
-  <% @issue.errors.full_messages.each do |message| %>
+<% if @comic.errors.any? %>
+  <% @comic.errors.full_messages.each do |message| %>
     <div class="alert alert-dismissable alert-danger">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <%= message %>
@@ -9,12 +9,12 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Issue #<%= @issue.id %></h3>
+  <h3>Edit Comic #<%= @comic.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/update_issue/<%= @issue.id %>" method="post">
+    <form action="/update_comic/<%= @comic.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -24,7 +24,7 @@
           User
         </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @issue.user_id %>">
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comic.user_id %>">
       </div>
 
       <!-- Label and input for name -->
@@ -33,14 +33,23 @@
           Name
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @issue.name %>">
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @comic.name %>">
+      </div>
+
+      <!-- Label and input for comic_url -->
+      <div class="form-group">
+        <label for="comic_url" class="control-label">
+          Comic url
+        </label>
+
+        <input type="text" id="comic_url" name="comic_url" placeholder="Comic url" class="form-control" value="<%= @comic.comic_url %>">
       </div>
 
       <button class="btn btn-warning">
-        Update Issue
+        Update Comic
       </button>
       or
-      <a href="/issues/<%= @issue.id %>">Cancel</a>
+      <a href="/comics/<%= @comic.id %>">Cancel</a>
     </form>
   </div>
 </div>
