@@ -1,39 +1,33 @@
 <div class="page-header">
-  <h3>Stage #<%= @stage.id %></h3>
+  <h3>Comic #<%= @comic.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Issue</dt>
-      <dd>
-        <% if @stage.issue.present? %>
-          <a href="/issues/<%= @stage.issue_id %>">
-            <%= @stage.issue.created_at %>
-          </a>
-        <% end %>
-      </dd>
+      <dt>Name</dt>
+      <dd><%= @comic.name %></dd>
 
-      <dt>Stage number</dt>
-      <dd><%= @stage.stage_number %></dd>
+      <dt>Comic url</dt>
+      <dd><%= @comic.comic_url %></dd>
 
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/stages" class="btn btn-primary">
+      <a href="/comics" class="btn btn-primary">
         Back
       </a>
-      <a href="/stages/<%= @stage.id %>/edit" class="btn btn-warning">
+      <a href="/comics/<%= @comic.id %>/edit" class="btn btn-warning">
         Edit
       </a>
-      <a href="/delete_stage/<%= @stage.id %>" class="btn btn-danger" rel="nofollow">
+      <a href="/delete_comic/<%= @comic.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
     </div>
   </div>
 </div>
 
-<!-- A Stage has many media -->
+<!-- A Comic has many media -->
 
 <div class="row">
   <div class="col-md-12">
@@ -42,7 +36,7 @@
         Media
       </li>
 
-      <% @stage.media.each do |medium| %>
+      <% @comic.media.each do |medium| %>
         <li class="list-group-item">
           <a href="/media/<%= medium.id %>">
             <%= medium.name %>
@@ -84,17 +78,32 @@
         <input type="text" id="url" name="url" placeholder="Url" class="form-control" value="">
       </div>
 
-      <!-- Label and input for bio -->
+      <!-- Label and input for description -->
       <div class="form-group">
-        <label for="bio" class="control-label">
-          Bio
+        <label for="description" class="control-label">
+          Description
         </label>
 
-        <textarea id="bio" name="bio" placeholder="Bio" class="form-control" rows="3"></textarea>
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="">
       </div>
 
-      <!-- Label and input for stage_id -->
-      <input type="hidden" name="stage_id" value="<%= @stage.id %>">
+      <!-- Label and input for chapter_id -->
+      <div class="form-group">
+        <label for="chapter_id" class="control-label">
+          Chapter
+        </label>
+
+        <%= select_tag(:chapter_id, options_from_collection_for_select(Comic.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for social_issue -->
+      <div class="form-group">
+        <label for="social_issue" class="control-label">
+          Social issue
+        </label>
+
+        <input type="text" id="social_issue" name="social_issue" placeholder="Social issue" class="form-control" value="">
+      </div>
 
       <button class="btn btn-block btn-success">
         Create Medium

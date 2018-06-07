@@ -1,7 +1,9 @@
 class Medium < ApplicationRecord
   # Direct associations
 
-  belongs_to :stage
+  belongs_to :issue,
+             :class_name => "Comic",
+             :foreign_key => "chapter_id"
 
   # Indirect associations
 
