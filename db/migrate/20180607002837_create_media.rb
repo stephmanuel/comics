@@ -3,8 +3,9 @@ class CreateMedia < ActiveRecord::Migration
     create_table :media do |t|
       t.string :name
       t.string :url
-      t.text :bio
-      t.integer :stage_id
+      t.string :description
+      t.integer :chapter_id
+      t.string :social_issue
 
       t.timestamps
 

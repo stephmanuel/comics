@@ -1,13 +1,14 @@
-class Stage < ApplicationRecord
+class Comic < ApplicationRecord
   # Direct associations
 
   has_many   :media,
+             :foreign_key => "chapter_id",
              :dependent => :destroy
-
-  belongs_to :issue
 
   # Indirect associations
 
   # Validations
+
+  validates :name, :presence => true
 
 end
