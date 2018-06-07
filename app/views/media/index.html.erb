@@ -14,8 +14,13 @@
   </div>
 
 <div class="form-group">
-    <%= f.label :bio_cont, "Bio contains" %>
-    <%= f.text_field :bio_cont, :class => "form-control", :placeholder => "Bio contains" %>
+    <%= f.label :social_issue_cont, "Social issue contains" %>
+    <%= f.text_field :social_issue_cont, :class => "form-control", :placeholder => "Social issue contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :description_cont, "Description contains" %>
+    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
   </div>
 
 <div class="form-group">
@@ -63,7 +68,45 @@
           });
       </script>
 
-        
+        <div class="form-group">
+          <%= f.label :created_at, "Comic Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='issuegteqcreated_atPicker'>
+                  <%= f.text_field :issue_created_at_gteq, :class => "form-control", :placeholder => "Comic Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='issuelteqcreated_atPicker'>
+                  <%= f.text_field :issue_created_at_lteq, :class => "form-control", :placeholder => "Comic Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#issuegteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#issuelteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#issuegteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#issuelteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#issuelteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#issuegteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
@@ -81,8 +124,9 @@
       <tr>
         <th>Name</th>
         <th>Url</th>
-        <th>Bio</th>
-        <th>Stage</th>
+        <th>Description</th>
+        <th>Comic</th>
+        <th>Social issue</th>
         <th>Actions</th>
       </tr>
 
@@ -90,14 +134,15 @@
       <tr>
         <td><%= medium.name %></td>
         <td><%= medium.url %></td>
-        <td><%= medium.bio %></td>
+        <td><%= medium.description %></td>
         <td>
-          <% if medium.stage.present? %>
-            <a href="/stages/<%= medium.stage.id %>">
-              <%= medium.stage.issue_id %>
+          <% if medium.issue.present? %>
+            <a href="/comics/<%= medium.issue.id %>">
+              <%= medium.issue.created_at %>
             </a>
           <% end %>
         </td>
+        <td><%= medium.social_issue %></td>
         <td>
           <a href="/media/<%= medium.id %>" class="btn btn-primary">Show</a>
           <a href="/media/<%= medium.id %>/edit" class="btn btn-warning">Edit</a>

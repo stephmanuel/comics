@@ -36,22 +36,31 @@
         <input type="text" id="url" name="url" placeholder="Url" class="form-control" value="<%= @medium.url %>">
       </div>
 
-      <!-- Label and input for bio -->
+      <!-- Label and input for description -->
       <div class="form-group">
-        <label for="bio" class="control-label">
-          Bio
+        <label for="description" class="control-label">
+          Description
         </label>
 
-        <textarea id="bio" name="bio" placeholder="Bio" class="form-control" rows="3"><%= @medium.bio %></textarea>
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @medium.description %>">
       </div>
 
-      <!-- Label and input for stage_id -->
+      <!-- Label and input for comic_id -->
       <div class="form-group">
-        <label for="stage_id" class="control-label">
-          Stage
+        <label for="comic_id" class="control-label">
+          Comic
         </label>
 
-        <%= select_tag(:stage_id, options_from_collection_for_select(Stage.all, :id, :issue_id, @medium.stage_id), :class => "form-control") %>
+        <%= select_tag(:comic_id, options_from_collection_for_select(Comic.all, :id, :created_at, @medium.comic_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for social_issue -->
+      <div class="form-group">
+        <label for="social_issue" class="control-label">
+          Social issue
+        </label>
+
+        <input type="text" id="social_issue" name="social_issue" placeholder="Social issue" class="form-control" value="<%= @medium.social_issue %>">
       </div>
 
       <button class="btn btn-success">

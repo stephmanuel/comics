@@ -1,6 +1,6 @@
 ActiveAdmin.register Medium do
 
- permit_params :name, :url, :bio, :stage_id
+ permit_params :name, :url, :description, :comic_id, :social_issue
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
